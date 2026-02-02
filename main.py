@@ -15,12 +15,17 @@ def read_numbers():
         numbers.append(x)
         
 def calc_stats(numbers):
-    
     stats = {}
+
+    if not numbers == 0:
+        stats["count"] = 0
+        stats["sum"] = 0
+        return stats
+    
     stats["count"] = len(numbers)
 
     total = 0
     for x in numbers:
-            total += x
+        total += x
     stats["sum"] = total
     return stats
