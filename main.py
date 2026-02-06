@@ -26,10 +26,14 @@ def calc_stats(numbers):
         stats["negatives_count"] = 0
         stats["positives_count"] = 0
         stats["zeros_count"] = 0
+        stats["sum_pos"] = 0
+        stats["sum_neg"] = 0
         return stats
     total = 0
     min_val = numbers[0]
     max_val = numbers[0]
+    sum_pos = 0
+    sum_neg = 0
     pc = 0
     nc = 0
     zc = 0
@@ -41,17 +45,23 @@ def calc_stats(numbers):
             max_val = x
         if x == 0:
             zc += 1
-        if x < 0:
+        elif x < 0:
             nc += 1
-        if x > 0:
+            sum_neg += x
+        else:
             pc += 1
+            sum_pos +=x
     stats["sum"] = total
-    stats["count"] = len(numbers)
-    stats['avg'] = total/len(numbers)
+    count = len(numbers)
+    avg = total / count
+    stats["count"] = count
+    stats["avg"] = avg
     stats['min'] = min_val
     stats['max'] = max_val
     stats["negatives_count"] = nc
     stats["positives_count"] = pc
     stats["zeros_count"] = zc
+    stats["sum_pos"] = sum_pos
+    stats["sum_neg"] = sum_neg
 
     return stats
